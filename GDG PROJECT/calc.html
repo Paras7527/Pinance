@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinCalc Pro | Financial Calculators</title>
+    <!-- Montserrat font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="calc.css">
+</head>
+<body>
+    <div class="header">
+        <h1>PINANCE PRO</h1>
+        <div class="header-subtitle">Smart financial tools for your future</div>
+    </div>
+
+    <div class="container">
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="openCalculator('emi')">EMI</button>
+            <button class="nav-tab" onclick="openCalculator('sip')">SIP</button>
+            <button class="nav-tab" onclick="openCalculator('ppf')">PPF</button>
+            <button class="nav-tab" onclick="openCalculator('swp')">SWP</button>
+            <button class="nav-tab" onclick="openCalculator('ci')">Compound</button>
+        </div>
+
+        <!-- EMI Calculator -->
+        <div id="emi" class="calculator animate-fade">
+            <div class="card-header">
+                <h2 class="card-title">EMI Calculator</h2>
+                <div class="card-subtitle">Calculate your Equated Monthly Installment for loans</div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Loan Amount</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">₹</span>
+                    <input type="number" id="loan" placeholder="500000">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="10000" max="10000000" step="10000" class="slider" id="loanSlider">
+                    <div class="slider-values">
+                        <span>₹10K</span>
+                        <span>₹1Cr</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Interest Rate (% per annum)</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">%</span>
+                    <input type="number" id="rate" placeholder="8.5">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="1" max="20" step="0.1" class="slider" id="rateSlider">
+                    <div class="slider-values">
+                        <span>1%</span>
+                        <span>20%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Loan Tenure</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">M</span>
+                    <input type="number" id="months" placeholder="60">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="1" max="360" step="1" class="slider" id="monthsSlider">
+                    <div class="slider-values">
+                        <span>1 month</span>
+                        <span>30 years</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" onclick="calculateEMI()">Calculate EMI</button>
+
+            <div class="result-container">
+                <div class="result-title">Your Monthly EMI</div>
+                <h3 class="result-value" id="emiResult">₹ 0</h3>
+                
+                <div class="result-secondary">
+                    <div class="result-item">
+                        <div class="result-item-label">Total Interest</div>
+                        <div class="result-item-value" id="totalInterest">₹ 0</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-label">Total Payment</div>
+                        <div class="result-item-value" id="totalPayment">₹ 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIP Calculator -->
+        <div id="sip" class="calculator animate-fade">
+            <div class="card-header">
+                <h2 class="card-title">SIP Calculator</h2>
+                <div class="card-subtitle">Plan your Systematic Investment Plan returns</div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Monthly Investment</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">₹</span>
+                    <input type="number" id="sipAmount" placeholder="10000">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="500" max="100000" step="500" class="slider" id="sipAmountSlider">
+                    <div class="slider-values">
+                        <span>₹500</span>
+                        <span>₹1L</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Expected Return Rate (% per annum)</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">%</span>
+                    <input type="number" id="sipRate" placeholder="12">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="1" max="30" step="0.1" class="slider" id="sipRateSlider">
+                    <div class="slider-values">
+                        <span>1%</span>
+                        <span>30%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Investment Period</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">M</span>
+                    <input type="number" id="sipMonths" placeholder="60">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="1" max="360" step="1" class="slider" id="sipMonthsSlider">
+                    <div class="slider-values">
+                        <span>1 month</span>
+                        <span>30 years</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" onclick="calculateSIP()">Calculate Returns</button>
+
+            <div class="result-container">
+                <div class="result-title">Estimated Returns</div>
+                <h3 class="result-value" id="sipResult">₹ 0</h3>
+                
+                <div class="result-secondary">
+                    <div class="result-item">
+                        <div class="result-item-label">Invested Amount</div>
+                        <div class="result-item-value" id="totalInvested">₹ 0</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-label">Wealth Gained</div>
+                        <div class="result-item-value" id="wealthGained">₹ 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PPF Calculator -->
+        <div id="ppf" class="calculator animate-fade">
+            <div class="card-header">
+                <h2 class="card-title">PPF Calculator</h2>
+                <div class="card-subtitle">Calculate returns on your Public Provident Fund</div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Annual Investment</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">₹</span>
+                    <input type="number" id="ppfAmount" placeholder="50000">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="500" max="150000" step="1000" class="slider" id="ppfAmountSlider">
+                    <div class="slider-values">
+                        <span>₹500</span>
+                        <span>₹1.5L</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Investment Period (Years)</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">Y</span>
+                    <input type="number" id="ppfYears" placeholder="15">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="15" max="30" step="1" class="slider" id="ppfYearsSlider">
+                    <div class="slider-values">
+                        <span>15 years</span>
+                        <span>30 years</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Interest Rate (%)</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">%</span>
+                    <input type="number" id="ppfRate" placeholder="7.1">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="5" max="10" step="0.1" class="slider" id="ppfRateSlider">
+                    <div class="slider-values">
+                        <span>5%</span>
+                        <span>10%</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" onclick="calculatePPF()">Calculate Maturity</button>
+
+            <div class="result-container">
+                <div class="result-title">Maturity Amount</div>
+                <h3 class="result-value" id="ppfResult">₹ 0</h3>
+                
+                <div class="result-secondary">
+                    <div class="result-item">
+                        <div class="result-item-label">Total Investment</div>
+                        <div class="result-item-value" id="ppfInvested">₹ 0</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-label">Interest Earned</div>
+                        <div class="result-item-value" id="ppfInterest">₹ 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SWP Calculator -->
+        <div id="swp" class="calculator animate-fade">
+            <div class="card-header">
+                <h2 class="card-title">SWP Calculator</h2>
+                <div class="card-subtitle">Plan your Systematic Withdrawal Plan</div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Initial Investment</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">₹</span>
+                    <input type="number" id="swpAmount" placeholder="1000000">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="100000" max="10000000" step="10000" class="slider" id="swpAmountSlider">
+                    <div class="slider-values">
+                        <span>₹1L</span>
+                        <span>₹1Cr</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Monthly Withdrawal</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">₹</span>
+                    <input type="number" id="swpWithdraw" placeholder="10000">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="1000" max="100000" step="1000" class="slider" id="swpWithdrawSlider">
+                    <div class="slider-values">
+                        <span>₹1K</span>
+                        <span>₹1L</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Expected Return Rate (% per annum)</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">%</span>
+                    <input type="number" id="swpRate" placeholder="8">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="1" max="15" step="0.1" class="slider" id="swpRateSlider">
+                    <div class="slider-values">
+                        <span>1%</span>
+                        <span>15%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Withdrawal Period</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">M</span>
+                    <input type="number" id="swpMonths" placeholder="120">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="1" max="360" step="1" class="slider" id="swpMonthsSlider">
+                    <div class="slider-values">
+                        <span>1 month</span>
+                        <span>30 years</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" onclick="calculateSWP()">Calculate Balance</button>
+
+            <div class="result-container">
+                <div class="result-title">Remaining Balance</div>
+                <h3 class="result-value" id="swpResult">₹ 0</h3>
+                
+                <div class="result-secondary">
+                    <div class="result-item">
+                        <div class="result-item-label">Total Withdrawal</div>
+                        <div class="result-item-value" id="totalWithdrawal">₹ 0</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-label">Growth</div>
+                        <div class="result-item-value" id="swpGrowth">₹ 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compound Interest Calculator -->
+        <div id="ci" class="calculator animate-fade">
+            <div class="card-header">
+                <h2 class="card-title">Compound Interest</h2>
+                <div class="card-subtitle">Calculate the power of compounding</div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Principal Amount</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">₹</span>
+                    <input type="number" id="ciPrincipal" placeholder="100000">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="1000" max="10000000" step="5000" class="slider" id="ciPrincipalSlider">
+                    <div class="slider-values">
+                        <span>₹1K</span>
+                        <span>₹1Cr</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Interest Rate (% per annum)</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">%</span>
+                    <input type="number" id="ciRate" placeholder="8">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="1" max="20" step="0.1" class="slider" id="ciRateSlider">
+                    <div class="slider-values">
+                        <span>1%</span>
+                        <span>20%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Time Period (Years)</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">Y</span>
+                    <input type="number" id="ciYears" placeholder="5">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="1" max="30" step="1" class="slider" id="ciYearsSlider">
+                    <div class="slider-values">
+                        <span>1 year</span>
+                        <span>30 years</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label class="input-label">Compounding Frequency</label>
+                <div class="input-wrapper">
+                    <span class="input-prefix">#</span>
+                    <input type="number" id="ciTimes" placeholder="1">
+                </div>
+                <div class="slider-container">
+                    <input type="range" min="1" max="12" step="1" class="slider" id="ciTimesSlider">
+                    <div class="slider-values">
+                        <span>Annually</span>
+                        <span>Monthly</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="calculate-btn" onclick="calculateCI()">Calculate Interest</button>
+
+            <div class="result-container">
+                <div class="result-title">Final Amount</div>
+                <h3 class="result-value" id="ciResult">₹ 0</h3>
+                
+                <div class="result-secondary">
+                    <div class="result-item">
+                        <div class="result-item-label">Principal</div>
+                        <div class="result-item-value" id="ciPrincipalDisplay">₹ 0</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-item-label">Interest Earned</div>
+                        <div class="result-item-value" id="ciInterestEarned">₹ 0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2025 FinCalc Pro. All calculations are estimates and not financial advice.
+        </div>
+    </div>
+
+    <script src="calc.js"></script>
+</body>
+</html>

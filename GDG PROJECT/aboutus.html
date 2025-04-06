@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: url('background.jpg') no-repeat center center/cover;
+            color: #E5C100;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background: linear-gradient(135deg, #D4AF37, #8B7500);
+            padding: 80px;
+            text-align: center;
+        }
+        .header h1 {
+            color: #000000;
+            font-size: 55px;
+            font-weight: 900;
+        }
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1400px;
+            margin: 80px auto;
+            text-align: center;
+        }
+        .about-card {
+            background: url('about-bg.jpg') no-repeat center center/cover;
+            padding: 120px;
+            border-radius: 25px;
+            margin-bottom: 50px;
+            transition: transform 0.3s ease-in-out;
+            width: 95%;
+            color: #FFF;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+        .about-card:hover {
+            transform: translateY(-10px);
+        }
+        .about-card h2 {
+            color: #D4AF37;
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
+        .about-card p {
+            font-size: 22px;
+            line-height: 2.2;
+            font-weight: 500;
+        }
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 100px;
+
+            border-radius: 25px;
+        }
+        .team-member {
+            background: rgba(20, 20, 20, 0.9);
+            padding: 200px;
+            border-radius: 20px;
+            text-align: center;
+            width: 320px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .team-member:hover {
+            transform: scale(1.07);
+        }
+        .team-member img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #D4AF37;
+        }
+        .team-member h3 {
+            color: #D4AF37;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .footer {
+            background: linear-gradient(135deg, #D4AF37, #8B7500);
+            padding: 40px;
+            text-align: center;
+            margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>About Us</h1>
+    </div>
+    <div class="about-container">
+        <div class="about-card">
+            <h2>Who We Are</h2>
+            <p>We are an innovative team of students dedicated to reshaping personal finance management through technology-driven solutions. Our passion for excellence fuels our mission to create intuitive financial tools that make wealth management effortless.</p>
+        </div>
+        <div class="about-card">
+            <h2>Our Vision</h2>
+            <p>We envision a future where financial literacy is accessible to everyone. By blending smart algorithms and user-friendly interfaces, we aim to make financial planning an engaging and empowering experience.</p>
+        </div>
+    </div>
+    <div class="team-container">
+        <div class="team-member">
+            <img src="team1.jpg" alt="John Doe">
+            <h3>John Doe</h3>
+            <p>Project Lead & Developer</p>
+        </div>
+        <div class="team-member">
+            <img src="team2.jpg" alt="Jane Smith">
+            <h3>Jane Smith</h3>
+            <p>UI/UX Designer</p>
+        </div>
+        <div class="team-member">
+            <img src="team3.jpg" alt="Mike Johnson">
+            <h3>Mike Johnson</h3>
+            <p>Data Analyst</p>
+        </div>
+        <div class="team-member">
+            <img src="team4.jpg" alt="Sarah Williams">
+            <h3>Sarah Williams</h3>
+            <p>Marketing & Research</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Student Finance Project. All Rights Reserved.</p>
+    </div>
+</body>
+</html>
